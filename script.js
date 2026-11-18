@@ -13,6 +13,17 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
+// Keep the navbar and page content below the promo banner, even when its text wraps
+const promoBanner = document.querySelector('.promo-banner');
+if (promoBanner) {
+    const syncPromoHeight = () => {
+        document.body.style.setProperty('--promo-height', `${promoBanner.offsetHeight}px`);
+    };
+    syncPromoHeight();
+    window.addEventListener('resize', syncPromoHeight);
+    window.addEventListener('load', syncPromoHeight);
+}
+
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
