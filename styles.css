@@ -95,7 +95,22 @@ p {
     width: 100%;
 }
 
-/* Promotional Banner */
+/* Promotional Banner
+   --promo-height pushes the navbar and page content below the banner.
+   script.js sets it to the banner's real height; these are pre-script defaults.
+   To retire the banner, just delete the .promo-banner markup from the pages. */
+:root {
+    --promo-height: 0px;
+}
+
+body:has(.promo-banner) {
+    --promo-height: 48px;
+}
+
+body {
+    padding-top: var(--promo-height);
+}
+
 .promo-banner {
     position: fixed;
     top: 0;
@@ -135,7 +150,7 @@ p {
 /* Navigation */
 .navbar {
     position: fixed;
-    top: 0;
+    top: var(--promo-height);
     width: 100%;
     background: rgba(0, 0, 0, 0.50);
     backdrop-filter: blur(10px);
@@ -146,7 +161,7 @@ p {
 
 .navbar-about {
     position: fixed;
-    top: 0;
+    top: var(--promo-height);
     width: 100%;
     background: rgba(0, 0, 0, 0.90);
     backdrop-filter: blur(10px);
@@ -1483,12 +1498,8 @@ section {
         font-size: 0.85rem;
     }
 
-    .navbar {
-        top: 0;
-    }
-
-    .navbar-about {
-        top: 0;
+    body:has(.promo-banner) {
+        --promo-height: 64px;
     }
 
     .page-header {
